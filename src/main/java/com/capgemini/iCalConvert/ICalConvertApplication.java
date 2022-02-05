@@ -25,7 +25,7 @@ public class ICalConvertApplication {
 			throw new Exception("UID cannot be null");
 		}
 
-		iCal4j ical4j = new iCal4j(path, uid);
+		iCal4j ical4j = new iCal4j(path.trim(), uid.trim());
 		ical4j.setOldCalendar();
 		ical4j.parseCalendar();
 		ical4j.export();
