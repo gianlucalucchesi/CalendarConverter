@@ -16,12 +16,12 @@ import java.io.FileOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class iCal4j {
+public class Ical4j {
     final String path, uid;
     private Calendar oldCalendar;
     private Calendar newCalendar;
 
-    iCal4j(String path, String uid) {
+    Ical4j(String path, String uid) {
         this.path = path;
         this.uid = uid;
     }

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Scanner;
 
 @SpringBootApplication
-public class ICalConvertApplication {
+public class CalendarConverterApplication {
 
 	public static void main(String[] args) throws Exception {
 
@@ -25,7 +25,7 @@ public class ICalConvertApplication {
 			throw new Exception("UID cannot be null");
 		}
 
-		iCal4j ical4j = new iCal4j(path.trim(), uid.trim());
+		Ical4j ical4j = new Ical4j(path.trim(), uid.trim());
 		ical4j.setOldCalendar();
 		ical4j.parseCalendar();
 		ical4j.export();
