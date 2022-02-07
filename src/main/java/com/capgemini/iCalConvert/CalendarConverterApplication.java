@@ -1,7 +1,5 @@
 package com.capgemini.iCalConvert;
 
-//import org.springframework.boot.SpringApplication;
-
 import org.apache.commons.lang3.SystemUtils;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -47,6 +45,7 @@ public class CalendarConverterApplication {
 
     public static void launch() {
         Console console = System.console();
+
         if (console != null) {
             File f = new File("launch.bat");
 
@@ -56,16 +55,15 @@ public class CalendarConverterApplication {
         } else if (!GraphicsEnvironment.isHeadless()) {
             if (SystemUtils.IS_OS_WINDOWS) {
                 try {
-                    File JarFile = new File
-                            (
-                                    CalendarConverterApplication.class.getProtectionDomain()
-                                            .getCodeSource().getLocation().toURI());
+                    File JarFile = new File(CalendarConverterApplication.class.getProtectionDomain()
+                            .getCodeSource().getLocation().toURI());
 
                     PrintWriter out = new PrintWriter(new File("launch.bat"));
                     out.println("@echo off");
-                    out.println("title Calendar Covnerter");
+                    out.println("title Calendar Converter");
                     out.println("java -jar " + JarFile.getPath());
                     out.close();
+
                     Runtime rt = Runtime.getRuntime();
                     rt.exec("cmd /c start launch.bat");
                 } catch (Exception e) {
@@ -73,7 +71,6 @@ public class CalendarConverterApplication {
                 }
                 System.exit(0);
             }
-
         }
     }
 }
