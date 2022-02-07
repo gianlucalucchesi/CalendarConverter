@@ -60,7 +60,7 @@ public class CalendarConverterApplication {
 
                     PrintWriter out = new PrintWriter(new File("launch.bat"));
                     out.println("@echo off");
-                    out.println("Calendar Converter");
+                    out.println("title Calendar Converter");
                     out.println("java -jar " + JarFile.getPath());
                     out.close();
 
