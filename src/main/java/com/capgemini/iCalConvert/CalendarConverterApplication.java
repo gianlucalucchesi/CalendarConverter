@@ -36,8 +36,8 @@ public class CalendarConverterApplication {
         ical4j.compareCalendars();
         ical4j.printCalendarEvents(ical4j.getCalendarToImport());
         ical4j.export();
-        ical4j.deleteFile(oldPath);
-        ical4j.renameFile(newtPath, oldPath);
+//        ical4j.deleteFile(oldPath);
+//        ical4j.renameFile(newtPath, oldPath);
 
         System.out.println("=================== DONE ===================");
         System.out.println("========= PLEASE KEEP THE OLD FILE =========");
