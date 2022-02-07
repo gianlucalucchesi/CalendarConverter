@@ -11,26 +11,30 @@ public class CalendarConverterApplication {
 	public static void main(String[] args) throws Exception {
 
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter input calendar file path: ");
-		String path = scanner.nextLine();
+		System.out.print("Enter OLD calendar file path: ");
+		String oldPath = scanner.nextLine();
 
-		if (!path.contains(".ics")) {
+		if (!oldPath.contains(".ics")) {
 			throw new Exception("Invalid path");
 		}
 
-		System.out.println("Enter UID of last imported event: ");
-		String uid = scanner.nextLine();
+		System.out.print("Enter NEW calendar file path: ");
+		String newtPath = scanner.nextLine();
 
-		if (uid == "" || uid == null) {
-			throw new Exception("UID cannot be null");
+		if (!newtPath.contains(".ics")) {
+			throw new Exception("Invalid path");
 		}
 
-		Ical4j ical4j = new Ical4j(path.trim(), uid.trim());
-		ical4j.setOldCalendar();
-		ical4j.parseCalendar();
+		Ical4j ical4j = new Ical4j(oldPath.trim(), newtPath.trim());
+		ical4j.setCalendars();
+		ical4j.compareCalendars();
+		ical4j.printCalendarEvents(ical4j.getCalendarToImport());
 		ical4j.export();
+		ical4j.deleteFile(oldPath);
+		ical4j.renameFile(newtPath, oldPath);
 
-		System.out.println("======== DONE ========");
+		System.out.println("=================== DONE ===================");
+		System.out.println("========= PLEASE KEEP THE OLD FILE =========");
 	}
 
 }
