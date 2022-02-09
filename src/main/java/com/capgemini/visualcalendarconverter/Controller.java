@@ -23,7 +23,12 @@ public class Controller {
     }
 
     private void runConversion(String oldPath, String newPath) {
-        Ical4j ical4j = new Ical4j(oldPath.trim(), newPath.trim());
+        oldPath = oldPath.replace('"', ' ');
+        oldPath = oldPath.trim();
+        newPath = newPath.replace('"', ' ');
+        newPath = newPath.trim();
+
+        Ical4j ical4j = new Ical4j(oldPath, newPath);
         ical4j.setCalendars();
         ical4j.compareCalendars();
         ical4j.printCalendarEvents(ical4j.getCalendarToImport());
