@@ -20,6 +20,10 @@ public class Controller {
 
     @FXML
     public void onConvert(ActionEvent actionEvent) {
+        // Should user run in again, remove visual validation first
+        // FIXME: Runs so fast that you don't see it going off/on
+        this.conversionDone.setVisible(false);
+
         this.oldPath = this.oldPath.replace('"', ' ');
         this.oldPath = this.oldPath.trim();
         this.newPath = this.newPath.replace('"', ' ');
@@ -30,8 +34,15 @@ public class Controller {
         ical4j.compareCalendars();
         ical4j.printCalendarEvents(ical4j.getCalendarToImport());
         ical4j.export();
+
+        this.validOldFile.setVisible(false);
+        this.validNewFile.setVisible(false);
         this.conversionDone.setVisible(true);
+
+        // FIXME: Not working on Capgemini PC
+        // Path may need to be replaced by URL instead of String
         ical4j.deleteFile(this.oldPath);
+        // As previous line is not working renaming gives an error (duplicate file)
         ical4j.renameFile(this.newPath, this.oldPath);
     }
 
